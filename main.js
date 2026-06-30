@@ -1,3 +1,24 @@
+// Hamburger menu toggle
+const navToggle = document.querySelector('.nav__toggle');
+const navLinksList = document.querySelector('.nav__links');
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinksList.classList.toggle('is-open');
+    navToggle.classList.toggle('is-open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when a link is clicked
+  navLinksList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinksList.classList.remove('is-open');
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
 // Active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav__links a');
